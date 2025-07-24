@@ -4,16 +4,28 @@ namespace App\Services;
 
 use App\Models\MonthlyFinance;
 use Illuminate\Http\Request;
+use App\Services\Interface\MonthlyFinanceServiceInterface;
 
-class MonthlyFinanceService implements MonthlyFinanceServiceInterface
+class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceServiceInterface
 {
+    /**
+     * Get all monthly finances with pagination
+     *
+     * @param Request $request
+     */
     public function getAllMonthlyFinances(Request $request)
     {
         // Bisa ditambah filter/pagination jika perlu
         return MonthlyFinance::orderByDesc('id')->paginate(10);
     }
 
-    public function getMonthlyFinanceById($id)
+    /**
+     * Get monthly finance by ID
+     *
+     * @param int $id
+     * @return array
+     */
+    public function getMonthlyFinanceById(int $id): array
     {
         $data = MonthlyFinance::findOrFail($id);
         return [
@@ -22,7 +34,13 @@ class MonthlyFinanceService implements MonthlyFinanceServiceInterface
         ];
     }
 
-    public function createMonthlyFinance(Request $request)
+    /**
+     * Create new monthly finance
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function createMonthlyFinance(Request $request): array
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -40,7 +58,14 @@ class MonthlyFinanceService implements MonthlyFinanceServiceInterface
         ];
     }
 
-    public function updateMonthlyFinance(Request $request, $id)
+    /**
+     * Update monthly finance
+     *
+     * @param Request $request
+     * @param int $id
+     * @return array
+     */
+    public function updateMonthlyFinance(Request $request, int $id): array
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -59,7 +84,13 @@ class MonthlyFinanceService implements MonthlyFinanceServiceInterface
         ];
     }
 
-    public function deleteMonthlyFinance($id)
+    /**
+     * Delete monthly finance
+     *
+     * @param int $id
+     * @return array
+     */
+    public function deleteMonthlyFinance(int $id): array
     {
         $data = MonthlyFinance::findOrFail($id);
         $data->delete();

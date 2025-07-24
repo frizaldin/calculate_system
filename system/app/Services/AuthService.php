@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use App\Services\Interface\AuthServiceInterface;
 
-class AuthService implements AuthServiceInterface
+class AuthService implements \App\Services\Interface\AuthServiceInterface
 {
     /**
      * Handle user signin process with database transaction

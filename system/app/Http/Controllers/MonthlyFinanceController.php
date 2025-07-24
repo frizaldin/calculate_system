@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\MonthlyFinanceServiceInterface;
+use App\Services\Interface\MonthlyFinanceServiceInterface;
 use Illuminate\Http\Request;
 
 class MonthlyFinanceController extends Controller

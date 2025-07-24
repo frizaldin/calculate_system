@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\AuthServiceInterface;
+use App\Services\Interface\AuthServiceInterface;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;

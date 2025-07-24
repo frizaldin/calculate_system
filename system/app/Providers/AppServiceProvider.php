@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 use App\Services\AuthService;
-use App\Services\AuthServiceInterface;
+use App\Services\Interface\AuthServiceInterface;
 use App\Services\CategoryService;
-use App\Services\CategoryServiceInterface;
+use App\Services\Interface\CategoryServiceInterface;
 use App\Services\WishlistService;
-use App\Services\WishlistServiceInterface;
+use App\Services\Interface\WishlistServiceInterface;
 use App\Services\ProjectServiceInterface;
 use App\Services\ProjectService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use App\Services\UploadService;
-use App\Services\MonthlyFinanceServiceInterface;
+use App\Services\Interface\MonthlyFinanceServiceInterface;
 use App\Services\MonthlyFinanceService;
 
 
@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(AuthServiceInterface::class, AuthService::class);
-        $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
-        $this->app->bind(WishlistServiceInterface::class, WishlistService::class);
-        $this->app->bind(ProjectServiceInterface::class, ProjectService::class);
-        $this->app->bind(MonthlyFinanceServiceInterface::class, MonthlyFinanceService::class);
+        $this->app->bind(\App\Services\Interface\AuthServiceInterface::class, AuthService::class);
+        $this->app->bind(\App\Services\Interface\CategoryServiceInterface::class, CategoryService::class);
+        $this->app->bind(\App\Services\Interface\WishlistServiceInterface::class, WishlistService::class);
+        $this->app->bind(\App\Services\Interface\ProjectServiceInterface::class, ProjectService::class);
+        $this->app->bind(\App\Services\Interface\MonthlyFinanceServiceInterface::class, MonthlyFinanceService::class);
         $this->app->singleton(UploadService::class, function ($app) {
             return new UploadService();
         });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\WishlistServiceInterface;
+use App\Services\Interface\WishlistServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;

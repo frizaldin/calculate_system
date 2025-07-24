@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use App\Services\Interface\WishlistServiceInterface;
 
-class WishlistService implements WishlistServiceInterface
+class WishlistService implements \App\Services\Interface\WishlistServiceInterface
 {
     /**
      * Get all wishlists with pagination

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use App\Services\Interface\CategoryServiceInterface;
 
-class CategoryService implements CategoryServiceInterface
+class CategoryService implements \App\Services\Interface\CategoryServiceInterface
 {
     /**
      * Get all categories with pagination
