@@ -27,7 +27,7 @@ interface MonthlyFinanceServiceInterface
      * @param Request $request
      * @return array
      */
-    public function createMonthlyFinance(Request $request): array;
+    public function create(Request $request): array;
 
     /**
      * Update monthly finance
@@ -36,7 +36,7 @@ interface MonthlyFinanceServiceInterface
      * @param int $id
      * @return array
      */
-    public function updateMonthlyFinance(Request $request, int $id): array;
+    public function update(Request $request, int $id): array;
 
     /**
      * Delete monthly finance
@@ -44,5 +44,5 @@ interface MonthlyFinanceServiceInterface
      * @param int $id
      * @return array
      */
-    public function deleteMonthlyFinance(int $id): array;
+    public function delete(int $id): array;
 }

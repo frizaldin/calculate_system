@@ -33,7 +33,7 @@ class MonthlyFinanceController extends Controller
 
     public function create(Request $request)
     {
-        $result = $this->monthlyFinanceService->createMonthlyFinance($request);
+        $result = $this->monthlyFinanceService->create($request);
         return response()->json($result);
     }
 
@@ -57,13 +57,13 @@ class MonthlyFinanceController extends Controller
 
     public function update(Request $request)
     {
-        $result = $this->monthlyFinanceService->updateMonthlyFinance($request, $request->id);
+        $result = $this->monthlyFinanceService->update($request, $request->id);
         return response()->json($result);
     }
 
     public function delete(Request $request)
     {
-        $result = $this->monthlyFinanceService->deleteMonthlyFinance($request->id);
+        $result = $this->monthlyFinanceService->delete($request->id);
         return response()->json($result);
     }
 }

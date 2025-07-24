@@ -24,7 +24,17 @@
                     <div class="col-md-12 mb-3">
                         <div class="form-group">
                             <label class="form-label">Tanggal Tagihan</label>
-                            <input type="date" name="billed_date" class="form-control" required>
+                            <input type="number" name="billed_day" class="form-control" placeholder="Pilih hari (1-31)"
+                                min="1" max="31" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label class="form-label">Frekuensi Pembayaran</label>
+                            <select name="frequently" class="form-control" required>
+                                <option value="Monthly">Bulanan</option>
+                                <option value="Yearly">Tahunan</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">

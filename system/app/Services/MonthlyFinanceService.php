@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\MonthlyFinance;
 use Illuminate\Http\Request;
 use App\Services\Interface\MonthlyFinanceServiceInterface;
+use Illuminate\Support\Facades\DB;
 
 class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceServiceInterface
 {
@@ -40,22 +41,34 @@ class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceSer
      * @param Request $request
      * @return array
      */
-    public function createMonthlyFinance(Request $request): array
+    public function create(Request $request): array
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'installments' => 'nullable|integer',
-            'billed_date' => 'required|date',
-            'type' => 'required|in:Temporary,Permanent',
-            'amount' => 'required|numeric',
-            'status' => 'required|in:Done,On Going',
-        ]);
-        $data = MonthlyFinance::create($validated);
-        return [
-            'success' => true,
-            'data' => $data,
-            'message' => 'Data berhasil ditambahkan.'
-        ];
+        try {
+            return DB::transaction(function () use ($request) {
+                $validated = $request->validate([
+                    'title' => 'required|string|max:255',
+                    'installments' => 'nullable|integer',
+                    'billed_day' => 'required|integer|min:1|max:31',
+                    'frequently' => 'required|in:Yearly,Monthly',
+                    'type' => 'required|in:Temporary,Permanent',
+                    'amount' => 'required',
+                    'status' => 'required|in:Done,On Going',
+                ]);
+                $validated['amount'] = priceToInt($validated['amount']);
+                $data = MonthlyFinance::create($validated);
+                return [
+                    'success' => true,
+                    'data' => $data,
+                    'url' => url('monthly_finances'),
+                    'message' => 'Data berhasil ditambahkan.'
+                ];
+            });
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
     }
 
     /**
@@ -65,23 +78,35 @@ class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceSer
      * @param int $id
      * @return array
      */
-    public function updateMonthlyFinance(Request $request, int $id): array
+    public function update(Request $request, int $id): array
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'installments' => 'nullable|integer',
-            'billed_date' => 'required|date',
-            'type' => 'required|in:Temporary,Permanent',
-            'amount' => 'required|numeric',
-            'status' => 'required|in:Done,On Going',
-        ]);
-        $data = MonthlyFinance::findOrFail($id);
-        $data->update($validated);
-        return [
-            'success' => true,
-            'data' => $data,
-            'message' => 'Data berhasil diupdate.'
-        ];
+        try {
+            return DB::transaction(function () use ($request, $id) {
+                $validated = $request->validate([
+                    'title' => 'required|string|max:255',
+                    'installments' => 'nullable|integer',
+                    'billed_day' => 'required|integer|min:1|max:31',
+                    'frequently' => 'required|in:Yearly,Monthly',
+                    'type' => 'required|in:Temporary,Permanent',
+                    'amount' => 'required',
+                    'status' => 'required|in:Done,On Going',
+                ]);
+                $validated['amount'] = priceToInt($validated['amount']);
+                $data = MonthlyFinance::findOrFail($id);
+                $data->update($validated);
+                return [
+                    'success' => true,
+                    'data' => $data,
+                    'url' => url('monthly_finances'),
+                    'message' => 'Data berhasil diupdate.'
+                ];
+            });
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
     }
 
     /**
@@ -90,13 +115,22 @@ class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceSer
      * @param int $id
      * @return array
      */
-    public function deleteMonthlyFinance(int $id): array
+    public function delete(int $id): array
     {
-        $data = MonthlyFinance::findOrFail($id);
-        $data->delete();
-        return [
-            'success' => true,
-            'message' => 'Data berhasil dihapus.'
-        ];
+        try {
+            return DB::transaction(function () use ($id) {
+                $data = MonthlyFinance::findOrFail($id);
+                $data->delete();
+                return [
+                    'success' => true,
+                    'message' => 'Data berhasil dihapus.'
+                ];
+            });
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
     }
 }

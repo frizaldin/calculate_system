@@ -17,8 +17,9 @@
                                     <th class="text-center" style="width: 100px">Aksi</th>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Judul</th>
-                                    <th class="text-center">Angsuran</th>
+                                    <th class="text-center">Sisa Angsuran</th>
                                     <th class="text-center">Tanggal Tagihan</th>
+                                    <th class="text-center">Frekuensi</th>
                                     <th class="text-center">Tipe</th>
                                     <th class="text-center">Jumlah</th>
                                     <th class="text-center">Status</th>
@@ -40,14 +41,28 @@
                                         </td>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->title }}</td>
-                                        <td>{{ $item->installments }}</td>
-                                        <td>{{ $item->billed_date }}</td>
+                                        <td>{!! $item->installments ?? '<i class="fa-solid fa-infinity"></i>' !!}</td>
+                                        <td>{{ $item->billed_day }}</td>
+                                        <td>{{ $item->frequently }}</td>
                                         <td>{{ $item->type }}</td>
-                                        <td>{{ number_format($item->amount, 2) }}</td>
+                                        <td>{{ number_format($item->amount) }}</td>
                                         <td>{{ $item->status }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="text-center" style="width: 100px"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ number_format($collection->sum('amount')) }}</td>
+                                    <td class="text-center"></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     {{ $collection->links('pagination::bootstrap-5') }}
