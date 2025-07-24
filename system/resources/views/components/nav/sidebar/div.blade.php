@@ -46,6 +46,32 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#monthly_finance" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="monthly_finance">
+                            <i class="iconoir-paste-clipboard menu-icon"></i>
+                            <span>Keuangan</span>
+                        </a>
+                        <div class="collapse " id="monthly_finance">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ url('monthly_finances/overview') }}" class="nav-link ">Overview</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a href="{{ url('monthly_finances') }}" class="nav-link ">Angsuran
+                                        Bulanan</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a href="{{ url('monthly_finances/expenditure') }}"
+                                        class="nav-link ">Pengeluaran</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a href="{{ url('monthly_finances/income') }}" class="nav-link ">Pemasukan</a>
+                                </li><!--end nav-item-->
+
+                            </ul><!--end nav-->
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#tasklist" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="tasklist">
                             <i class="iconoir-paste-clipboard menu-icon"></i>

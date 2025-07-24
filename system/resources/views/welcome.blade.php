@@ -517,7 +517,7 @@
                         <div class="mt-10">
                             <h4 class="text-sm font-medium text-gray-500 mb-4">Follow Me</h4>
                             <div class="flex space-x-4">
-                                <a href="#"
+                                    <a href="#"
                                     class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:text-primary hover:bg-gray-700 transition-colors duration-300">
                                     <span class="sr-only">Twitter</span>
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

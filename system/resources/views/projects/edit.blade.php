@@ -10,16 +10,16 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-label">Judul Kategori</label>
+                            <label for="" class="form-label">Judul Project</label>
                             <input type="text" name="name" class="form-control" id=""
-                                placeholder="Masukan Nama Kategori" value="{{ $item->name }}">
+                                placeholder="Masukan Nama Project" value="{{ $item->name }}">
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-label">Foto Produk </label>
+                            <label for="" class="form-label">Foto Project </label>
                             <input type="file" name="photo" class="form-control"
-                                placeholder="Masukan URL Foto Produk">
+                                placeholder="Masukan URL Foto Project">
                             <img src="{{ asset($item->photo) }}" alt="">
 
                         </div>

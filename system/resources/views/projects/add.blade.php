@@ -16,9 +16,9 @@
                     </div>
                     <div class="col-md-12 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-label">Foto Produk </label>
+                            <label for="" class="form-label">Foto Project </label>
                             <input type="file" name="photo" class="form-control"
-                                placeholder="Masukan URL Foto Produk">
+                                placeholder="Masukan URL Foto Project">
                         </div>
                     </div>
                 </div>
