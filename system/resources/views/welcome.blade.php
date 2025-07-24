@@ -1,146 +1,262 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="id">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Zarufiru</title>
 
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('logo-red.png') }}">
 
-    <!-- Styles / Scripts -->
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
-    @endif
+    <style>
+        * {
+            font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ededec;
+            overflow: hidden;
+            background: url('{{ asset('globe.png') }}');
+            background-color: #0a0a0ac4;
+            background-blend-mode: overlay;
+        }
+
+        .main-card {
+            background-color: #161615;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 250, 237, 0.08);
+            backdrop-filter: blur(4px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .timeline-item:hover {
+            border-left-color: rgba(255, 68, 51, 0.5);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0.35rem;
+            left: -0.45rem;
+            width: 14px;
+            height: 14px;
+            background-color: #161615;
+            border: 1px solid #3E3E3A;
+            border-radius: 50%;
+        }
+
+        .custom-link {
+            color: #FF4433;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .custom-link:hover {
+            color: #ff6655;
+            text-shadow: 0 0 4px rgba(255, 68, 51, 0.5);
+        }
+
+        .btn-start {
+            background-color: #ededec;
+            color: #1c1c1a;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-start:hover {
+            background-color: #ffffff;
+            transform: scale(1.03);
+        }
+
+        .logo-box {
+            background: radial-gradient(circle at center, #2c0005, #1D0002);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .logo-box img {
+            max-width: 80%;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.08));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-box img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .logo-box {
+                padding: 2rem 1rem;
+            }
+        }
+
+        #canvas {
+            position: absolute;
+            z-index: 999;
+            pointer-events: auto;
+        }
+
+        #canvas:hover {
+            cursor: grab;
+        }
+    </style>
 </head>
 
-<body
-    class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-    <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-        @if (Route::has('login'))
-            <nav class="flex items-center justify-end gap-4">
-                @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                        Dashboard
-                    </a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
-                        Log in
-                    </a>
+<body class="d-flex justify-content-center align-items-center min-vh-100 p-3">
+    <div class="container" style="max-width: 960px; z-index: 2;">
+        <div class="main-card row g-0">
+            <!-- LEFT SIDE -->
+            <div class="col-lg-7 p-4 p-lg-5">
+                <h1 class="h5 mb-1 fw-medium">Selamat Datang di Website Firdan</h1>
+                <p class="text-secondary mb-4">Web Ini Merupakan website untuk keperluan pribadi</p>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                            Register
-                        </a>
-                    @endif
-                @endauth
-            </nav>
-        @endif
-    </header>
-    <div
-        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-            <div
-                class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-                <h1 class="mb-1 font-medium">Selamat Datang di Website Firdan</h1>
-                <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Web Ini Merupakan website untuk keperluan pribadi</p>
-                <ul class="flex flex-col mb-4 lg:mb-6">
-                    <li
-                        class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:top-1/2 before:bottom-0 before:left-[0.4rem] before:absolute">
-                        <span class="relative py-1 bg-white dark:bg-[#161615]">
-                            <span
-                                class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
-                                <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
-                            </span>
-                        </span>
-                        <span>
-                            Sistem
-                            <a href="{{ url('signin') }}" style="margin-left: 10px" target="_blank"
-                                class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-3">
-                                <span>Kunjungi</span>
-                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
-                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor"
-                                        stroke-linecap="square" />
-                                </svg>
-                            </a>
-                        </span>
-                    </li>
-                    <li
-                        class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:bottom-1/2 before:top-0 before:left-[0.4rem] before:absolute">
-                        <span class="relative py-1 bg-white dark:bg-[#161615]">
-                            <span
-                                class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
-                                <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
-                            </span>
-                        </span>
-                        <span>
-                            Website
-                            <a href="{{ url('/') }}" style="margin-left: 10px" target="_blank"
-                                class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-3">
-                                <span>Coming Soon</span>
-                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
-                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor"
-                                        stroke-linecap="square" />
-                                </svg>
-                            </a>
-                        </span>
-                        <span>
-                            Portfolio
-                            <a href="{{ url('/') }}" style="margin-left: 10px" target="_blank"
-                                class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-3">
-                                <span>Coming Soon</span>
-                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
-                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor"
-                                        stroke-linecap="square" />
-                                </svg>
-                            </a>
-                        </span>
-                        <span>
-                            Portfolio
-                            <a href="{{ url('/') }}" style="margin-left: 10px" target="_blank"
-                                class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-3">
-                                <span>Coming Soon</span>
-                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
-                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor"
-                                        stroke-linecap="square" />
-                                </svg>
-                            </a>
-                        </span>
-                    </li>
-                </ul>
-                <ul class="flex gap-3 text-sm leading-normal">
-                    <li>
-                        <a href="{{ url('/') }}" target="_blank"
-                            class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal ">
-                            Mulai
-                        </a>
-                    </li>
-                </ul>
+                <div class="timeline-item text-sm">
+                    <small> Sistem
+                        <a href="{{ url('signin') }}" class="custom-link ms-2" target="_blank">Kunjungi ↗</a>
+                    </small>
+                </div>
+                <div class="timeline-item text-sm">
+                    <small> Website
+                        <a href="{{ url('/') }}" class="custom-link ms-2" target="_blank">Coming Soon ↗</a>
+                    </small>
+                </div>
+                <div class="timeline-item text-sm">
+                    <small> Portfolio
+                        <a href="{{ url('/') }}" class="custom-link ms-2" target="_blank">Coming Soon ↗</a>
+                    </small>
+                </div>
+                <div class="timeline-item text-sm">
+                    <small> CV
+                        <a href="{{ url('/') }}" class="custom-link ms-2" target="_blank">Coming Soon ↗</a>
+                    </small>
+                </div>
+
+                <div class="mt-4">
+                    <a href="{{ url('/') }}" class="btn btn-start px-4 py-2">Mulai</a>
+                </div>
             </div>
-            <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                style="display: flex; justify-content: center; align-items: center;">
-                {{-- Laravel Logo --}}
-                <img src="{{ asset('logo-white.png') }}" alt="" style="    width: 80%;">
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-5 logo-box">
+                <img src="{{ asset('logo-white.png') }}" alt="Logo" />
+                <div id="canvas"></div>
+
             </div>
-        </main>
+        </div>
     </div>
 
-    @if (Route::has('login'))
-        <div class="h-14.5 hidden lg:block"></div>
-    @endif
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const width = 500;
+        const height = 500;
+
+        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+        camera.position.z = 4;
+
+        const renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true
+        });
+        renderer.setSize(width, height);
+        document.getElementById("canvas").appendChild(renderer.domElement);
+
+        const radius = 2;
+        const dots = 1000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = [];
+        const basePositions = [];
+
+        for (let i = 0; i < dots; i++) {
+            const theta = Math.random() * 2 * Math.PI;
+            const phi = Math.acos(2 * Math.random() - 1);
+
+            const x = radius * Math.sin(phi) * Math.cos(theta);
+            const y = radius * Math.sin(phi) * Math.sin(theta);
+            const z = radius * Math.cos(phi);
+
+            positions.push(x, y, z);
+            basePositions.push(x, y, z); // buat posisi dasar globe
+        }
+
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.015
+        });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        // Hover untuk matiin autoRotate
+        const canvasContainer = document.getElementById("canvas");
+        canvasContainer.addEventListener("mouseenter", () => {
+            controls.autoRotate = false;
+        });
+        canvasContainer.addEventListener("mouseleave", () => {
+            controls.autoRotate = true;
+        });
+
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            time += 0.01;
+
+            const pos = geometry.attributes.position.array;
+            for (let i = 0; i < pos.length; i += 3) {
+                const bx = basePositions[i];
+                const by = basePositions[i + 1];
+                const bz = basePositions[i + 2];
+
+                // Efek getaran hidup
+                pos[i] = bx + Math.sin(time + i) * 0.02;
+                pos[i + 1] = by + Math.cos(time + i * 1.1) * 0.02;
+                pos[i + 2] = bz + Math.sin(time + i * 0.9) * 0.02;
+            }
+
+            geometry.attributes.position.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener("resize", () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+    </script>
+
 </body>
 
 </html>
