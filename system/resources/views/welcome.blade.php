@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Elegant Portfolio</title>
+    <title>Firdan Rizaldin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
@@ -260,10 +260,10 @@
                 <div class="space-y-8 slide-in">
                     <h1 class="text-5xl md:text-6xl font-bold leading-tight">
                         <span class="block">Hi, I'm</span>
-                        <span class="gradient-text">Full Name</span>
+                        <span class="gradient-text">Firdan Rizaldin</span>
                     </h1>
                     <p class="text-xl text-gray-300 max-w-lg">
-                        Professional <span class="gradient-text font-medium">Job Title</span> with X+ years of
+                        Professional <span class="gradient-text font-medium">Programmer</span> with 4+ years of
                         experience creating digital experiences.
                     </p>
                     <div class="flex space-x-4">
@@ -310,14 +310,14 @@
                     </div>
                     <div class="glass-card rounded-2xl p-1 h-full relative z-10 gradient-border">
                         <div class="bg-darker rounded-xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=2832&auto=format&fit=crop"
+                            <img src="{{ asset('logo-white.png') }}"
                                 alt="Person working on modern laptop in dark themed workspace"
                                 class="w-full h-auto object-cover">
                             <div class="p-6 text-center">
                                 <div class="flex justify-center space-x-4">
                                     <div
                                         class="bg-gradient-to-r from-primary to-accent p-2 rounded-lg inline-flex items-center">
-                                        <span class="text-xs font-medium">X+ Years Experience</span>
+                                        <span class="text-xs font-medium">4+ Years Experience</span>
                                     </div>
                                 </div>
                             </div>
@@ -326,15 +326,17 @@
                 </div>
 
                 <div class="space-y-6 slide-in delay-200">
-                    <h3 class="text-3xl font-bold">I create digital experiences that matter</h3>
+                    <h3 class="text-3xl font-bold">A Programmer Who Thrives Both in Teams and Independently</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        With a background in [your field], I bring a unique perspective to every project. My approach
-                        combines technical expertise with creative problem-solving to deliver solutions that exceed
-                        expectations.
+                        I am a programmer with a background in [your field], known for my adaptability and ability to
+                        work effectively both independently and as part of a team. I always strive to bring a unique
+                        perspective to every project I take on.
                     </p>
                     <p class="text-gray-400 leading-relaxed">
-                        Throughout my career, I've had the privilege of working with clients across various industries,
-                        helping them transform their ideas into exceptional digital products.
+                        My strong communication skills and collaborative mindset allow me to contribute seamlessly in
+                        team environments, while my self-motivation ensures I can also deliver excellent results when
+                        working alone. Throughout my career, I have helped clients from various industries turn their
+                        ideas into high-quality digital products.
                     </p>
 
                     <div class="grid grid-cols-2 gap-4">
@@ -493,7 +495,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <h4 class="text-sm font-medium text-gray-500">Phone</h4>
-                                    <p class="text-gray-300">+62 123-4567-890</p>
+                                    <p class="text-gray-300">+62 857-7017-5497</p>
                                 </div>
                             </div>
 
@@ -507,7 +509,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <h4 class="text-sm font-medium text-gray-500">Email</h4>
-                                    <p class="text-gray-300">contact@example.com</p>
+                                    <p class="text-gray-300">firdanrizaldin7@gmail.com</p>
                                 </div>
                             </div>
                         </div>
@@ -540,6 +542,30 @@
                                         <path
                                             d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
                                         </path>
+                                    </svg>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:text-primary hover:bg-gray-700 transition-colors duration-300">
+                                    <span class="sr-only">Instagram</span>
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:text-primary hover:bg-gray-700 transition-colors duration-300">
+                                    <span class="sr-only">Facebook</span>
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12" />
+                                    </svg>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:text-primary hover:bg-gray-700 transition-colors duration-300">
+                                    <span class="sr-only">Discord</span>
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.317 4.369A19.791 19.791 0 0 0 16.885 3.1a.117.117 0 0 0-.123.06c-.53.96-1.12 2.22-1.53 3.22-1.53-.23-3.06-.23-4.58 0-.41-1-.99-2.26-1.53-3.22a.117.117 0 0 0-.123-.06A19.736 19.736 0 0 0 3.683 4.369a.105.105 0 0 0-.047.043C.533 9.043-.32 13.579.099 18.057a.12.12 0 0 0 .045.083c2.052 1.507 4.042 2.422 5.992 3.029a.116.116 0 0 0 .127-.043c.461-.63.873-1.295 1.226-1.994a.112.112 0 0 0-.065-.158c-.652-.247-1.274-.549-1.872-.892a.117.117 0 0 1-.011-.195c.126-.094.252-.192.372-.291a.112.112 0 0 1 .114-.013c3.927 1.793 8.18 1.793 12.061 0a.112.112 0 0 1 .115.012c.12.099.246.197.372.291a.117.117 0 0 1-.01.195c-.599.344-1.221.646-1.874.893a.112.112 0 0 0-.064.157c.36.699.772 1.364 1.227 1.994a.116.116 0 0 0 .127.043c1.95-.607 3.94-1.522 5.992-3.029a.115.115 0 0 0 .045-.083c.5-5.177-.838-9.673-3.57-13.645a.093.093 0 0 0-.047-.043zM8.02 15.331c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.175 1.095 2.156 2.418 0 1.334-.955 2.419-2.156 2.419zm7.974 0c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.175 1.095 2.156 2.418 0 1.334-.946 2.419-2.156 2.419z" />
                                     </svg>
                                 </a>
                             </div>
