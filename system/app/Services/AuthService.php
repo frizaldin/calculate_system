@@ -5,13 +5,12 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use App\Services\Interface\AuthServiceInterface;
 
-class AuthService implements \App\Services\Interface\AuthServiceInterface
+class AuthService implements AuthServiceInterface
 {
     /**
      * Handle user signin process with database transaction
@@ -40,7 +39,7 @@ class AuthService implements \App\Services\Interface\AuthServiceInterface
 
                 if (Auth::attempt($credentials)) {
                     // Get authenticated user
-                    $user = Auth::user();
+                    $user = User::find(Auth::user()->id);
 
                     // Update last login timestamp
                     $user->update([
@@ -104,7 +103,7 @@ class AuthService implements \App\Services\Interface\AuthServiceInterface
             DB::beginTransaction();
 
             try {
-                $user = Auth::user();
+                $user = User::find(Auth::user()->id);
 
                 if ($user) {
                     // Update logout timestamp
