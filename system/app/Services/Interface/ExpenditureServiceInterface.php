@@ -4,25 +4,25 @@ namespace App\Services\Interface;
 
 use Illuminate\Http\Request;
 
-interface MonthlyFinanceServiceInterface
+interface ExpenditureServiceInterface
 {
     /**
-     * Get all monthly finances with pagination
+     * Get all expenditures with pagination
      *
      * @param Request $request
      */
-    public function getAllMonthlyFinances(Request $request);
+    public function getAllExpenditures(Request $request);
 
     /**
-     * Get monthly finance by ID
+     * Get expenditure by ID
      *
      * @param int $id
      * @return array
      */
-    public function getMonthlyFinanceById(int $id): array;
+    public function getExpenditureById(int $id): array;
 
     /**
-     * Create new monthly finance
+     * Create new expenditure
      *
      * @param Request $request
      * @return array
@@ -30,7 +30,7 @@ interface MonthlyFinanceServiceInterface
     public function create(Request $request): array;
 
     /**
-     * Update monthly finance
+     * Update expenditure
      *
      * @param Request $request
      * @param int $id
@@ -39,19 +39,10 @@ interface MonthlyFinanceServiceInterface
     public function update(Request $request, int $id): array;
 
     /**
-     * Delete monthly finance
+     * Delete expenditure
      *
      * @param int $id
      * @return array
      */
     public function delete(int $id): array;
-
-
-    /**
-     * Delete monthly finance
-     *
-     * @param int $id
-     * @return array
-     */
-    public function payBill(int $id): array;
 }

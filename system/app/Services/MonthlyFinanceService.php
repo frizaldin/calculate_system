@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Expenditure;
 use App\Models\MonthlyFinance;
 use Illuminate\Http\Request;
 use App\Services\Interface\MonthlyFinanceServiceInterface;
@@ -124,6 +125,38 @@ class MonthlyFinanceService implements \App\Services\Interface\MonthlyFinanceSer
                 return [
                     'success' => true,
                     'message' => 'Data berhasil dihapus.'
+                ];
+            });
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+    }
+
+    /**
+     * Delete monthly finance
+     *
+     * @param int $id
+     * @return array
+     */
+    public function payBill(int $id): array
+    {
+        try {
+            return DB::transaction(function () use ($id) {
+                $data = MonthlyFinance::findOrFail($id);
+
+                // Masukkan data ke tabel expenditure berdasarkan data monthly finance yang dibayar
+                Expenditure::create([
+                    'purpose' => 'Pembayaran' . $data->title,
+                    'amount' => $data->amount,
+                    'date' => now(),
+                    'monthly_finance_id' => $data->id,
+                ]);
+                return [
+                    'success' => true,
+                    'message' => 'Pembayaran telah di lakukan.'
                 ];
             });
         } catch (\Exception $e) {

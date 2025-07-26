@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MonthlyFinanceController;
+
+require __DIR__ . '/income.php';
+require __DIR__ . '/expenditure.php';
 
 Route::get('/', function () {
     return view('welcome');

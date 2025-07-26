@@ -61,11 +61,10 @@
                                         Bulanan</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a href="{{ url('monthly_finances/expenditure') }}"
-                                        class="nav-link ">Pengeluaran</a>
+                                    <a href="{{ url('expenditures') }}" class="nav-link ">Pengeluaran</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a href="{{ url('monthly_finances/income') }}" class="nav-link ">Pemasukan</a>
+                                    <a href="{{ url('incomes') }}" class="nav-link ">Pemasukan</a>
                                 </li><!--end nav-item-->
 
                             </ul><!--end nav-->

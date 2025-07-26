@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 use App\Services\UploadService;
 use App\Services\Interface\MonthlyFinanceServiceInterface;
 use App\Services\MonthlyFinanceService;
+use App\Services\Interface\IncomeServiceInterface;
+use App\Services\IncomeService;
+use App\Services\Interface\ExpenditureServiceInterface;
+use App\Services\ExpenditureService;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Services\Interface\WishlistServiceInterface::class, WishlistService::class);
         $this->app->bind(\App\Services\Interface\ProjectServiceInterface::class, ProjectService::class);
         $this->app->bind(\App\Services\Interface\MonthlyFinanceServiceInterface::class, MonthlyFinanceService::class);
+        $this->app->bind(IncomeServiceInterface::class, IncomeService::class);
+        $this->app->bind(ExpenditureServiceInterface::class, ExpenditureService::class);
         $this->app->singleton(UploadService::class, function ($app) {
             return new UploadService();
         });
